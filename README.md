@@ -1,7 +1,7 @@
 # agent-gradle-plugin
 [![Release](https://jitpack.io/v/alexxxdev/agent-gradle-plugin.svg)](https://jitpack.io/#alexxxdev/agent-gradle-plugin)
 
-A Gradle plugin for hooking up a Java Agent.
+A Gradle plugin for hooking up a Java Agent for Java And Android projects.
 This plugin will attach the agent you specify to the `test` tasks.
 
 ### Setup
