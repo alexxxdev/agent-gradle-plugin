@@ -11,7 +11,7 @@ buildscript {
 	  maven { url 'https://jitpack.io' }
 	}
   dependencies{
-    classpath "com.github.alexxxdev:agent-gradle-plugin:1.1.0"
+    classpath "com.github.alexxxdev:agent-gradle-plugin:1.1.1"
   }
 }
 
