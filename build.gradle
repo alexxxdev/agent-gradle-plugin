@@ -2,20 +2,22 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 
 group 'com.github.alexxxdev'
-version '1.0.0'
+version '1.1.0'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile gradleApi()
-    compile localGroovy()
+    implementation gradleApi()
+    implementation localGroovy()
+
+    implementation "com.android.tools.build:gradle:2.3.0"
 }
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Gradle plugin',
+        attributes 'Implementation-Title': 'Java Agent Gradle plugin',
                 'Implementation-Version': version,
                 'Built-By': System.getProperty('user.name'),
                 'Built-Date': new Date(),
@@ -23,5 +25,40 @@ jar {
                 'Built-Gradle': gradle.gradleVersion,
                 'Source-Compatibility': project.sourceCompatibility,
                 'Target-Compatibility': project.targetCompatibility
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: mavenLocal().url)
+            pom.groupId = rootProject.group
+            pom.artifactId = project.name
+            pom.version = rootProject.version
+            pom.project{
+                name 'Java Agent Gradle plugin'
+                description 'A Gradle plugin for hooking up a Java Agent.' +
+                        'This plugin will attach the agent you specify to the `test` tasks.' +
+                        'To use it, add an `agent` dependency to your dependencies like `dependencies { agent("com.foo:bar:1.2.3") }`.'
+                url 'https://github.com/alexxxdev/agent-gradle-plugin'
+                inceptionYear '2017'
+
+                developers {
+                    developer {
+                        id 'alexxxdev'
+                        name 'Alexey Derendyaev'
+                        email 'alexxxdev@yandex.ru'
+                    }
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+            }
+        }
     }
 }
